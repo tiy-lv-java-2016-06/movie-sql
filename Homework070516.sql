@@ -58,11 +58,49 @@ FROM movies
   JOIN movie_genre ON movies.movieid = movie_genre.movieid
   JOIN genre ON movie_genre.genre_id = genre.id
   JOIN tags ON tags.movieid = movies.movieid
-WHERE genre.genres = 'Comedy' AND tags.tag = 'death';
+WHERE genre.genres = 'Drama' AND tags.tag = 'Death';
 
 --Find any movies from either 2001 or 2002 with a title containing super
 
 SELECT *
 FROM movies
 WHERE title LIKE '%Super%' AND (title LIKE '%2002%' OR title LIKE '%2001%');
+
+--Find all the ratings for the movie Godfather, show just the title and the rating
+
+SELECT movies.title, ratings.rating
+FROM movies
+  JOIN ratings ON movies.movieid = ratings.movieid
+WHERE movies.title LIKE '%Godfather%';
+
+--Order the previous objective by newest to oldest
+
+SELECT movies.title, ratings.rating
+FROM movies
+  JOIN ratings ON movies.movieid = ratings.movieid
+WHERE movies.title LIKE '%Godfather%'
+ORDER BY timestamp ASC;
+
+--Find the comedies from 2005 and get the title and imdbid from the links table
+
+SELECT movies.title, links.imdbid
+FROM movies
+  JOIN links ON movies.movieid = links.movieid
+WHERE movies.title LIKE '%2005%' AND movies.genres LIKE '%Comedy%';
+
+--Find all movies that have no ratings
+
+SELECT *
+FROM movies
+  LEFT JOIN ratings ON movies.movieid = ratings.movieid
+WHERE ratings.rating ISNULL;
+
+--Find all fantasy movies using the many to many join between movies and genres through movie_genre table.
+
+SELECT *
+FROM movies
+  JOIN movie_genre ON movies.movieid = movie_genre.movieid
+  JOIN genre ON movie_genre.genre_id = genre.id
+WHERE genre.genres = 'Fantasy';
+
 
