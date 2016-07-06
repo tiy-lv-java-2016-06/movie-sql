@@ -82,7 +82,7 @@ where ratings.rating is null;
 SELECT movies.title, genre.genres
 from movies
   join movie_genre on movies.movieid = movie_genre.movieid
-  join genre on movies.genres = genre.genres
+  join genre on movie_genre.genre_id = genre.id
 where genre.genres like '%Fantasy%';
 
 
