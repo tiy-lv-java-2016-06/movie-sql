@@ -49,3 +49,13 @@ WHERE movies.genres LIKE '%Drama%' and movies.genres LIKE '%Comedy%';
 select *
 from movies
 where title like '%Super%' and (title like '%2001)' or title LIKE '%2002)');
+
+
+/***  Joins ***/
+
+-- Find all the ratings for the movie Godfather, show just the title and the rating
+
+-- Order the previous objective by newest to oldest
+-- Find the comedies from 2005 and get the title and imdbid from the links table
+-- Find all movies that have no ratings
+-- Find all fantasy movies using the many to many join between movies and genres through movie_genre table.
