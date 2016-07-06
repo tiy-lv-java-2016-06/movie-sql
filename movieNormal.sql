@@ -85,6 +85,6 @@ WHERE ratings.rating IS NULL;
 --Find all fantasy movies using the many to many join between movies and genres through movie_genre table.
 SELECT *
 FROM movies
-  LEFT JOIN genre ON movies.genres = genre.genres
-  LEFT JOIN movie_genre ON genre.id = movie_genre.genre_id
-WHERE genre.genres LIKE '%Fantasy%';
+  LEFT JOIN movie_genre ON movies.movieid = movie_genre.movieid
+  LEFT JOIN genre ON movie_genre.genre_id = genre.id
+WHERE genre.genres = 'Fantasy';
